@@ -1,4 +1,7 @@
-import urllib.request
+try: #python3
+    from urllib.request import urlopen
+except: #python2
+    from urllib2 import urlopen
 import json
 import datetime
 
@@ -11,11 +14,11 @@ class Weather:
         # If there are predictions
         if (aDateTime < (datetime.datetime.now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
             # Find the id of the city on metawheather
-            woeid = json.loads(urllib.request.urlopen(
+            woeid = json.loads(urlopen(
                 "https://www.metaweather.com/api/location/search/?query=" + city).read())[0]['woeid']
 
             # Find the predictions for the city
-            results = json.loads(urllib.request.urlopen(
+            results = json.loads(urlopen(
                 "https://www.metaweather.com/api/location/" + str(woeid)).read())['consolidated_weather']
 
             for result in results:

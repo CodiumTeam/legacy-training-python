@@ -1,7 +1,16 @@
-# Run with docker
+# Weather kata
+The goal of this kata is decouple business logic from infrastructure.
 
-## Build the image once
-docker build -t pytest .
+## How to run and see the result
+With Python 2
 
-## Run the tests
-docker run -v "$PWD":/home/pytest pytest pytest -s
+    make run
+    
+With Python 3 
+
+    make run_python3
+
+## Authors
+Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
+
+Jordi Anguela [@jordianguela](https://www.twitter.com/jordianguela)
