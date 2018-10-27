@@ -1,8 +1,8 @@
 class UsersStaticWebPageGenerator:
-    def generateFile(self, users):
+    def generate_file(self, users):
 
         # save resulting static html page
-        file = open("html/users.html", "w\n")
+        file = open("html/users.html", "w")
 
         file.write("<!doctype html>\n")
         file.write("<html lang=\"en\">\n")

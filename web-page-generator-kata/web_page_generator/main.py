@@ -20,4 +20,4 @@ users = [
 ]
 
 generator = UsersStaticWebPageGenerator()
-generator.generateFile(users)
+generator.generate_file(users)

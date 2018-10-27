@@ -49,8 +49,14 @@ In this bonus feature we should create a backup file apart from the automatic ge
 - **Practice the sprout class technique** to avoid adding more complexity to the current classes
 - **Practice the wrap method/class technique** in the bonus task to encapsulate the current logic and add a the new feature
 
-## How to run and test it
-    python src/main.py
+## How to run and see the result
+With Python 2
+
+    make run
+    
+With Python 3 
+
+    make run_python3
 
 Open in a browser [html/users.html](html/users.html)
 
