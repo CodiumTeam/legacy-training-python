@@ -25,6 +25,11 @@ The list of keywords that we are interested in is:
 - teatro
 - social
 
+The html code that we could use could be:
+
+```html
+  <button type="button" class="btn btn-warning">Score <span class="badge badge-light">N</span><span class="sr-only">keywords found</span></button>";
+```
 
 #### 2) Localization label
 
@@ -33,11 +38,21 @@ The list of keywords that we are interested in is:
 Our company has 5 offices around Spain: Barcelona, Madrid, Granada, Vigo and Palma de Mallorca.
 We want to display a label with the name of the city if it appears in the biography.
 
+A possible design could be:
+
+```html
+  <span class="badge badge-pill badge-info">Madrid</span>
+```
+
 #### 3) Special label "Community manager"
 
 ![New Special label](./doc/specialLabel.png)
 
 We want to display a special label titled "Community manager" if this text appears in the bio.
+
+```html
+  <span class="badge badge-pill badge-danger">Community manager</span>
+```
 
 #### 4) Bonus task 
 
