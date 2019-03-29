@@ -28,3 +28,11 @@ class UserRegistrationControllerTestCase(TestCase):
 
         content = json.loads(response.content)
         self.assertEqual(content['email'], 'info@codium.team')
+
+    def test_should_fail_when_password_is_short(self):
+        request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass_' })
+
+        response = UserController.as_view()(request)
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.content, b'Password is not valid')
