@@ -1,10 +1,12 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.views import View
+from app.user import User
 
 class UserController(View):
     # Create your views here.
     def get(self, request):
-        return HttpResponse("Hello, world. You're at the polls index.")
+        return JsonResponse("Hello, world. You're at the polls index.")
 
     def post(self, request):
-        return HttpResponse("Hello, world. You're at the polls index.")
+        user = User(request.POST['name'])
+        return JsonResponse({'name': user.name})
