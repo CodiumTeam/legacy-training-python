@@ -20,3 +20,11 @@ class UserRegistrationControllerTestCase(TestCase):
 
         content = json.loads(response.content)
         self.assertEqual(content['name'], 'Codium')
+
+    def test_should_returns_a_user_with_the_email_when_everything_is_valid(self):
+        request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass_123123' })
+
+        response = UserController.as_view()(request)
+
+        content = json.loads(response.content)
+        self.assertEqual(content['email'], 'info@codium.team')

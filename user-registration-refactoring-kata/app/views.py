@@ -8,5 +8,5 @@ class UserController(View):
         return JsonResponse("Hello, world. You're at the polls index.")
 
     def post(self, request):
-        user = User(request.POST['name'])
-        return JsonResponse({'name': user.name})
+        user = User(request.POST['name'], request.POST['email'])
+        return JsonResponse({'name': user.name, 'email': user.email})
