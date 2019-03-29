@@ -36,3 +36,11 @@ class UserRegistrationControllerTestCase(TestCase):
 
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.content, b'Password is not valid')
+
+    def test_should_fail_when_password_does_not_contain_underscore(self):
+        request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass123123' })
+
+        response = UserController.as_view()(request)
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.content, b'Password is not valid')

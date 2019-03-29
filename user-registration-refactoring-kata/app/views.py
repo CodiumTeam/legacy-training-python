@@ -10,5 +10,7 @@ class UserController(View):
     def post(self, request):
         if len(request.POST['password']) <= 8:
             return HttpResponseBadRequest('Password is not valid')
+        if "_" not in request.POST['password']:
+            return HttpResponseBadRequest('Password is not valid')
         user = User(request.POST['name'], request.POST['email'])
         return JsonResponse({'name': user.name, 'email': user.email})
