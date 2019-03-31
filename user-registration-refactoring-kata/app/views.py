@@ -1,3 +1,4 @@
+import smtplib, ssl
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
 from app.user import User
@@ -19,5 +20,13 @@ class UserController(View):
             return HttpResponseBadRequest('The email is already in use')
         user = User(request.POST['name'], request.POST['email'])
         self.user_repository.save(user)
+
+        # Send a confirmation email
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            # Uncomment this lines with a valid username and password
+            # server.login("my@gmail.com", "myPassword")
+            # server.sendmail('info@codium.team', request.POST['password'], 'Confirmation link')
+            pass
 
         return JsonResponse({'name': user.name, 'email': user.email})
