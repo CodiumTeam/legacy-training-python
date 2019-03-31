@@ -34,6 +34,14 @@ class UserRegistrationControllerTestCase(TestCase):
         content = json.loads(response.content)
         self.assertEqual(content['email'], 'info@codium.team')
 
+    def test_should_generate_a_random_id_when_everything_is_valid(self):
+        request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass_123123' })
+
+        response = self.view(request)
+
+        content = json.loads(response.content)
+        self.assertIsNotNone(content['id'])
+
     def test_should_fail_when_password_is_short(self):
         request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass_' })
 
@@ -58,7 +66,7 @@ class UserRegistrationControllerTestCase(TestCase):
         self.assertIsNotNone(user)
 
     def test_should_fail_when_email_is_used(self):
-        UserController.user_repository.save(User('Codium', 'info@codium.team'))
+        UserController.user_repository.save(User(1, 'Codium', 'info@codium.team'))
 
         request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass_123123' })
         response = self.view(request)

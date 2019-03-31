@@ -3,6 +3,7 @@ from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
 from app.user import User
 from app.user_framework_repository import UserFrameworkRepository
+from random import randint
 
 class UserController(View):
     user_repository = UserFrameworkRepository()
@@ -18,7 +19,7 @@ class UserController(View):
             return HttpResponseBadRequest('Password is not valid')
         if self.user_repository.find_by_email(request.POST['email']) is not None:
             return HttpResponseBadRequest('The email is already in use')
-        user = User(request.POST['name'], request.POST['email'])
+        user = User(randint(1, 999999), request.POST['name'], request.POST['email'])
         self.user_repository.save(user)
 
         # Send a confirmation email
@@ -29,4 +30,4 @@ class UserController(View):
             # server.sendmail('info@codium.team', request.POST['password'], 'Confirmation link')
             pass
 
-        return JsonResponse({'name': user.name, 'email': user.email})
+        return JsonResponse({'name': user.name, 'email': user.email, 'id': user.id})
