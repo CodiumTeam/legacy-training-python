@@ -44,3 +44,10 @@ class UserRegistrationControllerTestCase(TestCase):
 
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.content, b'Password is not valid')
+
+    def test_persist_the_user(self):
+        request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass_123123' })
+        UserController.as_view()(request)
+
+        user = UserController.user_repository.find_by_email('info@codium.team')
+        self.assertIsNotNone(user)

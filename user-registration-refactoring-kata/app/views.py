@@ -1,8 +1,11 @@
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
 from app.user import User
+from app.user_framework_repository import UserFrameworkRepository
 
 class UserController(View):
+    user_repository = UserFrameworkRepository()
+
     # Create your views here.
     def get(self, request):
         return JsonResponse("Hello, world. You're at the polls index.")
@@ -13,4 +16,6 @@ class UserController(View):
         if "_" not in request.POST['password']:
             return HttpResponseBadRequest('Password is not valid')
         user = User(request.POST['name'], request.POST['email'])
+        self.user_repository.save(user)
+
         return JsonResponse({'name': user.name, 'email': user.email})
