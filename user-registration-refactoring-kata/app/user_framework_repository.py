@@ -11,4 +11,4 @@ class UserFrameworkRepository:
         self.users[user.email] = user
 
     def find_by_email(self, email_address):
-        return self.users[email_address]
+        return self.users.get(email_address)

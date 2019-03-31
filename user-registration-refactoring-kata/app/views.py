@@ -15,6 +15,8 @@ class UserController(View):
             return HttpResponseBadRequest('Password is not valid')
         if "_" not in request.POST['password']:
             return HttpResponseBadRequest('Password is not valid')
+        if self.user_repository.find_by_email(request.POST['email']) is not None:
+            return HttpResponseBadRequest('The email is already in use')
         user = User(request.POST['name'], request.POST['email'])
         self.user_repository.save(user)
 
