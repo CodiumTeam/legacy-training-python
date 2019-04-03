@@ -27,7 +27,7 @@ class UserController(View):
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
             # Uncomment this lines with a valid username and password
             # server.login("my@gmail.com", "myPassword")
-            # server.sendmail('info@codium.team', request.POST['password'], 'Confirmation link')
+            # server.sendmail('info@codium.team', request.POST['email'], 'Confirmation link')
             pass
 
         return JsonResponse({'name': user.name, 'email': user.email, 'id': user.id})
