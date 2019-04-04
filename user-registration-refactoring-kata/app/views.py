@@ -20,7 +20,7 @@ class UserController(View):
         if self.user_repository.find_by_email(request.POST['email']) is not None:
             return HttpResponseBadRequest('The email is already in use')
         user = User(randint(1, 999999), request.POST['name'], request.POST['email'])
-        self.user_repository.save(user)
+        UserController.user_repository.save(user)
 
         # Send a confirmation email
         context = ssl.create_default_context()
