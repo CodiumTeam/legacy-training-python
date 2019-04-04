@@ -10,6 +10,9 @@ run:
 docker-run:
 	docker run -v $(shell pwd):/opt/project -w /opt/project python make run
 
+docker-win-run:
+	docker run -v %cd%:/opt/project -w /opt/project python make run
+
 define HELP
 # Local commands
 	- make run\tRun locally using Python3 and Unittest
