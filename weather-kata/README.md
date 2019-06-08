@@ -2,13 +2,20 @@
 The goal of this kata is decouple business logic from infrastructure.
 
 ## How to run and see the result
-With Python 2
+## Run the tests
+
+**Locally** with Python3 on Linux and Mac
 
     make run
-    
-With Python 3 
 
-    make run_python3
+or inside **docker** on **Linux and Mac**
+
+    make docker-run
+
+or inside docker on **Windows**
+
+    docker run -v %cd%:/opt/project -w /opt/project python make run
+    
 
 ## Authors
 Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
