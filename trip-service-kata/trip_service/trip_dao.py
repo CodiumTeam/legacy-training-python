@@ -1,5 +1,5 @@
 
-from dependend_class_call_during_unit_test_exception import DependendClassCallDuringUnitTestException
+from .dependend_class_call_during_unit_test_exception import DependendClassCallDuringUnitTestException
 
 class TripDAO:
   @staticmethod

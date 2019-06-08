@@ -1,5 +1,5 @@
 
-from trip import Trip
+from .trip import Trip
 
 class User:
   
