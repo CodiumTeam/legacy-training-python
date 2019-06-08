@@ -17,19 +17,24 @@ We only can change TripService class.
   - Parametrize constructor
   - Introduce static setter 
 
-## Install the dependencies
+## How to run and see the result
+## Run the tests
 
-    pip install virtualenv
-    virtualenv virtualenv
-    source virtualenv/bin/activate
-    pip install pytest
+**Locally** with Python3 on Linux and Mac
 
-## Run the tests with
+    make run
 
-    make test
+or inside **docker** on **Linux and Mac**
+
+    make docker-run
+
+or inside docker on **Windows**
+
+    docker run -v %cd%:/opt/project -w /opt/project python make run
 
 ## Original source code from:
 https://github.com/sandromancuso/trip-service-kata
+
 Sandro Mancuso @sandromancuso
 
 
