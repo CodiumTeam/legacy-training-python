@@ -2,3 +2,5 @@
 .cache
 venv/
 virtualenv/
+*.pyc
+__pycache__
