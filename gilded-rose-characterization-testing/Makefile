@@ -5,7 +5,7 @@ run-python2:
 	pytest
 
 run:
-	python3 -m unittest gilded_rose/test_gilded_rose.py
+	python3 -m unittest tests/gilded_rose_test.py
 
 docker-run:
 	docker run -v $(shell pwd):/opt/project -w /opt/project python make run
