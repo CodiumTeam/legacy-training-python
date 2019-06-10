@@ -1,4 +1,4 @@
-# Gilded Rose characterization testing
+# Gilded Rose Golden master
 
 ## Description:
 This kata has a legacy code to practice writing a Golden Master piece.
