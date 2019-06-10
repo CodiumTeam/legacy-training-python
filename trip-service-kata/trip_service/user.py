@@ -5,7 +5,7 @@ class User:
   
   def __init__(self):
     self.trips = []
-    self.friend = []
+    self.friends = []
   
   def getFriends(self):
     return self.friends
