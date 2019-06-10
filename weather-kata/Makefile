@@ -5,13 +5,13 @@ run-python2:
 	pytest
 
 run:
-	python3 -m unittest tests/weather_test.py
+	python -m unittest tests/weather_test.py
 
 docker-run:
-	docker run -v $(shell pwd):/opt/project -w /opt/project python make run
+	docker run -v $(shell pwd):/opt/project -w /opt/project python:3.7 make run
 
 docker-win-run:
-	docker run -v %cd%:/opt/project -w /opt/project python make run
+	docker run -v %cd%:/opt/project -w /opt/project python:3.7 make run
 
 define HELP
 # Local commands

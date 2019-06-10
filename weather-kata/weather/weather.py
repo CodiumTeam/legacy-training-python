@@ -15,11 +15,11 @@ class Weather:
         if (aDateTime < (datetime.datetime.now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
             # Find the id of the city on metawheather
             woeid = json.loads(urlopen(
-                "https://www.metaweather.com/api/location/search/?query=" + city).read())[0]['woeid']
+                "https://www.metaweather.com/api/location/search/?query=" + city).read().decode("utf-8"))[0]['woeid']
 
             # Find the predictions for the city
             results = json.loads(urlopen(
-                "https://www.metaweather.com/api/location/" + str(woeid)).read())['consolidated_weather']
+                "https://www.metaweather.com/api/location/" + str(woeid)).read().decode("utf-8"))['consolidated_weather']
 
             for result in results:
                 # When the date is the expected
