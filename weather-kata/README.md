@@ -8,19 +8,54 @@ This kata has a code that request the weather prediction from Metaweather.
 - Remove the external dependency when testing in order to make the tests repeatable and fast 
 
 ## How to run and see the result
-## Run the tests
+## Locally
 
-**Locally** with Python3 on Linux and Mac
+### on Linux and Mac
+Run the tests
 
     make run
 
-or inside **docker** on **Linux and Mac**
+Run the code coverage
 
+    make coverage
+    
+### on Windows
+Run the tests
+    
+    python -m unittest tests/weather_test.py
+    
+Run the code coverage
+
+    coverage run weather/weather.py
+	coverage html
+	
+## Docker
+
+### on Linux and Mac
+Generate the image
+
+    make docker-build
+
+Run the tests
+    
     make docker-run
 
-or inside docker on **Windows**
+Run the code coverage
+    
+    make docker-coverage
 
-    docker run -v %cd%:/opt/project -w /opt/project python make run
+### on Windows
+Generate the image
+
+    docker build . -t python-coverage
+
+Run the tests
+    
+    docker run -v %cd%:/opt/project -w /opt/project python-coverage make run
+
+Run the code coverage
+
+    docker run -v %cd%:/opt/project -w /opt/project python-coverage make coverage
     
 
 ## Authors
