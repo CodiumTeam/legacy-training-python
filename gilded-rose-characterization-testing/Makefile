@@ -7,7 +7,7 @@ run-python2:
 run:
 	python -m unittest tests/gilded_rose_test.py
 coverage:
-	coverage run tests/gilded_rose_test.py
+	pytest --cov=gilde_rose tests
 	coverage html
 	@printf "Please open the report at htmlcov/index.html\n"
 
