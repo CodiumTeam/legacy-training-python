@@ -26,7 +26,7 @@ Run the tests
     
 Run the code coverage
 
-    coverage run weather/weather.py
+    pytest --cov=weather tests
 	coverage html
 	
 ## Docker
