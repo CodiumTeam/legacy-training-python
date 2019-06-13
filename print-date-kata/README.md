@@ -34,7 +34,7 @@ How to use Unittest Mock to generate the doubles.
 
     def test_should_success_when_password_is_valid(self):
         password_validator = Mock()
-        password_validator.is_valid = Mock(true)
+        password_validator.is_valid = Mock(return_value=true)
         user_registration = UserRegistration(password_validator)
 
         success = user_registration.register()
