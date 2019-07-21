@@ -1,1 +1,1 @@
-from .tennis import TennisGame1
+from .tennis import TennisGame
