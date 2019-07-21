@@ -8,7 +8,7 @@ import json
 class UserRegistrationControllerTestCase(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
-        UserController.user_repository = UserFrameworkRepository()
+        UserFrameworkRepository.set_instance(None)
         self.view = UserController.as_view()
 
     def test_should_success_when_everything_is_valid(self):
@@ -62,11 +62,11 @@ class UserRegistrationControllerTestCase(TestCase):
         request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass_123123' })
         self.view(request)
 
-        user = UserController.user_repository.find_by_email('info@codium.team')
+        user = UserFrameworkRepository.get_instance().find_by_email('info@codium.team')
         self.assertIsNotNone(user)
 
     def test_should_fail_when_email_is_used(self):
-        UserController.user_repository.save(User(1, 'Codium', 'info@codium.team'))
+        UserFrameworkRepository.get_instance().save(User(1, 'Codium', 'info@codium.team'))
 
         request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass_123123' })
         response = self.view(request)
