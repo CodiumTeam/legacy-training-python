@@ -5,9 +5,9 @@ run-python2:
 	pytest
 
 run:
-	python -m unittest tests/weather_test.py
+	python -m unittest tests/test_weather.py
 coverage:
-	pytest --cov=weather tests
+	pytest tests --cov=weather
 	coverage html
 	@printf "Please open the report at htmlcov/index.html\n"
 
