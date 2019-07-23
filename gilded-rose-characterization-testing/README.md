@@ -35,11 +35,11 @@ Run the code coverage
 ### on Windows
 Run the tests
     
-    python -m unittest tests/weather_test.py
+    python -m unittest tests/gilded_rose_test.py
     
 Run the code coverage
 
-    coverage run weather/weather.py
+    coverage run gilded_rose/gilded_rose.py
 	coverage html
 	
 ## Docker
