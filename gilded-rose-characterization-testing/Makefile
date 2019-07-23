@@ -5,11 +5,11 @@ run-python2:
 	pytest
 
 run:
-	python -m unittest tests/gilded_rose_test.py
+	python -m unittest
 coverage:
-	pytest --cov=gilde_rose tests
-	coverage html
-	@printf "Please open the report at htmlcov/index.html\n"
+	pytest tests --cov=gilded_rose
+	#coverage html
+	#@printf "Please open the report at htmlcov/index.html\n"
 
 docker-build:
 	@docker build . -t python-coverage
