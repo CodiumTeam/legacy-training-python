@@ -1,24 +1,18 @@
+.PHONY: default tests docker-tests
 default:
 	@printf "$$HELP"
 
-run-python2:
-	pytest
-
-run:
+tests:
 	python3 -m unittest tests/tennis_unittest.py
 
-docker-run:
-	docker run -v $(shell pwd):/opt/project -w /opt/project python make run
-
-docker-win-run:
-	docker run -v %cd%:/opt/project -w /opt/project python make run
+docker-tests:
+	docker run -v ${PWD}:/opt/project -w /opt/project python:3.7 make tests
 
 define HELP
 # Local commands
-	- make run\tRun locally using Python3 and Unittest
-	- make run-python2\t\tRun locally using Python2 and Pytest
+	- make tests\tRun locally using Python3 and Unittest
 # Docker commands
-	- make docker-run\tRun inside docker with Python3
+	- make docker-tests\tRun inside docker with Python3
  Please execute "make <command>". Example make help
 
 endef

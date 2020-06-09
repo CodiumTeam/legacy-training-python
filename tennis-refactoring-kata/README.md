@@ -30,16 +30,10 @@ You need only report the score for the current game. Sets and Matches are out of
 
 ## How to execute the tests with python 3
     make tests 
-    
-## Install the dependencies for python 2
 
-    pip install virtualenv
-    virtualenv virtualenv
-    source virtualenv/bin/activate
-    pip install pytest
+## How to execute the tests using docker
 
-## How to execute the tests with python 2
-    make pytest
+    make docker-tests    
 
 # Credits
 Thanks to [Emily Bache](https://github.com/emilybache) for crafting this kata.
