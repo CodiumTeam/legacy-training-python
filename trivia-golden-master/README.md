@@ -23,12 +23,12 @@ or inside **docker** on **Linux and Mac**
 
 or inside docker on **Windows**
 
-    docker run -v %cd%:/opt/project -w /opt/project python make run
+Open the Makefile and copy and paste the lines below each command.
     
 
 ## Run the tests with
 
-    make test
+    make tests
 
 ## Original source code from:
 https://github.com/jbrains/trivia

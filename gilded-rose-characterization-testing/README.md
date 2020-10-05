@@ -26,21 +26,14 @@ You can to run the test with coverage in order to know if all the paths have bee
 ### on Linux and Mac
 Run the tests
 
-    make run
+    make tests
 
 Run the code coverage
 
     make coverage
     
 ### on Windows
-Run the tests
-    
-    python -m unittest tests/gilded_rose_test.py
-    
-Run the code coverage
-
-    coverage run gilded_rose/gilded_rose.py
-	coverage html
+Open the Makefile and copy and paste the lines below each command.
 	
 ## Docker
 
@@ -51,24 +44,14 @@ Generate the image
 
 Run the tests
     
-    make docker-run
+    make docker-tests
 
 Run the code coverage
     
     make docker-coverage
 
 ### on Windows
-Generate the image
-
-    docker build . -t python-coverage
-
-Run the tests
-    
-    docker run -v %cd%:/opt/project -w /opt/project python-coverage make run
-
-Run the code coverage
-
-    docker run -v %cd%:/opt/project -w /opt/project python-coverage make coverage
+Open the Makefile and copy and paste the lines below each command.
     
 ## Inspired by:
 https://github.com/emilybache/GildedRose-Refactoring-Kata/

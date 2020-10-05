@@ -1,11 +1,12 @@
 default:
 	@printf "$$HELP"
 
-run-python2:
+tests:
+	python -m unittest tests/print_date_test.py
+
+tests-python2:
 	pytest
 
-run:
-	python -m unittest tests/print_date_test.py
 coverage:
 	pytest --cov=print_date tests
 	coverage html
@@ -13,22 +14,19 @@ coverage:
 
 docker-build:
 	@docker build . -t python-coverage
-docker-run:
-	@docker run -v $(shell pwd):/opt/project -w /opt/project python-coverage make run
+docker-tests:
+	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make tests
 docker-coverage:
-	@docker run -v $(shell pwd):/opt/project -w /opt/project python-coverage make coverage
-
-docker-win-run:
-	docker run -v %cd%:/opt/project -w /opt/project python-coverage make run
+	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make coverage
 
 define HELP
 # Local commands
-	- make run\tRun locally using Python3 and Unittest
+	- make tests\tRun locally using Python3 and Unittest
 	- make coverage\tRun the code coverage locally using Python3 and Unittest
-	- make run-python2\t\tRun locally using Python2 and Pytest
+	- make tests-python2\t\tRun locally using Python2 and Pytest
 # Docker commands
 	- make docker-build\tBuild the image to run the tests
-	- make docker-run\tRun the tests inside docker
+	- make docker-tests\tRun the tests inside docker
 	- make docker-coverage\tRun inside docker the code coverage
  Please execute "make <command>". Example make help
 

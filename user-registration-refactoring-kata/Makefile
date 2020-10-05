@@ -5,7 +5,7 @@ docker-build:
 	docker build -t django-docker-bootstrap .
 
 docker-tests:
-	docker run -v $(shell pwd):/opt/project django-docker-bootstrap ./manage.py test test
+	docker run -v ${PWD}:/opt/project django-docker-bootstrap ./manage.py test test
 
 define HELP
 # Docker commands

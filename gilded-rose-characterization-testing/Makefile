@@ -4,7 +4,7 @@ default:
 run-python2:
 	pytest
 
-run:
+tests:
 	python -m unittest
 coverage:
 	pytest tests --cov=gilded_rose
@@ -13,13 +13,11 @@ coverage:
 
 docker-build:
 	@docker build . -t python-coverage
-docker-run:
-	@docker run -v $(shell pwd):/opt/project -w /opt/project python-coverage make run
+docker-tests:
+	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make tests
 docker-coverage:
-	@docker run -v $(shell pwd):/opt/project -w /opt/project python-coverage make coverage
+	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make coverage
 
-docker-win-run:
-	docker run -v %cd%:/opt/project -w /opt/project python-coverage make run
 
 define HELP
 # Local commands

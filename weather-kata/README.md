@@ -13,7 +13,7 @@ This kata has a code that request the weather prediction from Metaweather.
 ### on Linux and Mac
 Run the tests
 
-    make run
+    make tests
 
 Run the code coverage
 
@@ -38,25 +38,14 @@ Generate the image
 
 Run the tests
     
-    make docker-run
+    make docker-tests
 
 Run the code coverage
     
     make docker-coverage
 
 ### on Windows
-Generate the image
-
-    docker build . -t python-coverage
-
-Run the tests
-    
-    docker run -v %cd%:/opt/project -w /opt/project python-coverage make run
-
-Run the code coverage
-
-    docker run -v %cd%:/opt/project -w /opt/project python-coverage make coverage
-    
+Open the Makefile and copy and paste the lines below each command.
 
 ## Authors
 Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)

@@ -16,15 +16,15 @@ You don't need the business requirements.
 
 **Locally** with Python3 on Linux and Mac
 
-    make run
+    make tests
 
 or inside **docker** on **Linux and Mac**
 
-    make docker-run
+    make docker-tests
 
-or inside docker on **Windows**
+or on **Windows**
 
-    docker run -v %cd%:/opt/project -w /opt/project python make run
+    Open the Makefile and copy and paste the lines below each command.
     
 ## Inspired by:
 https://github.com/emilybache/GildedRose-Refactoring-Kata/

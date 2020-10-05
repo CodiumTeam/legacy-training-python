@@ -46,21 +46,14 @@ How to use Unittest Mock to generate the doubles.
 ### on Linux and Mac
 Run the tests
 
-    make run
+    make tests
 
 Run the code coverage
 
     make coverage
     
 ### on Windows
-Run the tests
-    
-    python -m unittest tests/weather_test.py
-    
-Run the code coverage
-
-    pytest --cov=weather tests
-	coverage html
+Open the Makefile and copy and paste the lines below each command.
 	
 ## Docker
 
@@ -71,25 +64,14 @@ Generate the image
 
 Run the tests
     
-    make docker-run
+    make docker-tests
 
 Run the code coverage
     
     make docker-coverage
 
 ### on Windows
-Generate the image
-
-    docker build . -t python-coverage
-
-Run the tests
-    
-    docker run -v %cd%:/opt/project -w /opt/project python-coverage make run
-
-Run the code coverage
-
-    docker run -v %cd%:/opt/project -w /opt/project python-coverage make coverage
-
+Open the Makefile and copy and paste the lines below each command.
 
 ## Authors
 Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
