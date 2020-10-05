@@ -1,50 +1,33 @@
 #!/bin/bash
-FAILED=false
+ERROR=""
 OUTPUT=""
 function printStatus() {
   if [ $? -ne 0 ]; then
     echo "Error"
-    echo "$OUTPUT"
-    FAILED=true
+    ERROR="${ERROR} \n\n${OUTPUT}"
   else
-    echo "OK"
+    echo "Ok"
   fi
 }
 
-echo -n "Validating web-page-generator-kata..............."
-OUTPUT=$(cd web-page-generator-kata && make docker-run 2>&1)
-printStatus
+function validateKata() {
+    echo -n "Validating $1..."
+    OUTPUT=$($2 2>&1 && $3 2>&1 && $4 2>&1)
+    printStatus
+}
 
-echo -n "Validating tennis-refactoring-kata..............."
-OUTPUT=$(cd tennis-refactoring-kata && make docker-tests 2>&1)
-printStatus
+validateKata web-page-generator-kata "cd web-page-generator-kata" "make docker-run"
+validateKata tennis-refactoring-kata "cd tennis-refactoring-kata" "make docker-tests"
+validateKata user-registration-refactoring-kata "cd user-registration-refactoring-kata" "make docker-build" "make docker-tests"
+validateKata weather-kata "cd weather-kata" "make docker-build" "make docker-tests"
+validateKata trip-service-kata "cd trip-service-kata" "make docker-tests"
+validateKata gilded-rose-golden-master "cd gilded-rose-golden-master" "make docker-run"
+validateKata trivia-golden-master "cd trivia-golden-master" "make docker-run"
+validateKata print-date-kata "cd print-date-kata" "make docker-build" "make docker-tests"
 
-echo -n "Validating user-registration-refactoring-kata...."
-OUTPUT=$(cd user-registration-refactoring-kata && make docker-build && make docker-tests 2>&1)
-printStatus
-
-echo -n "Validating weather-kata.........................."
-OUTPUT=$(cd weather-kata && make docker-build && make docker-tests 2>&1)
-printStatus
-
-echo -n "Validating trip-service-kata....................."
-OUTPUT=$(cd trip-service-kata && make docker-tests 2>&1)
-printStatus
-
-echo -n "Validating gilded-rose-golden-master............."
-OUTPUT=$(cd gilded-rose-golden-master && make docker-run 2>&1)
-printStatus
-
-echo -n "Validating trivia-golden-master.................."
-OUTPUT=$(cd trivia-golden-master && make docker-run 2>&1)
-printStatus
-
-echo -n "Validating print-date-kata......................."
-OUTPUT=$(cd print-date-kata && make docker-build && make docker-tests 2>&1)
-printStatus
-
-if $FAILED; then
-  echo -e "\n\nPlease send an email with the problem you have to info@codium.team\n"
-else
+if [ -z "$ERROR" ]; then
   echo "Congratulations! You are ready for the training!"
+else
+  echo -e "----------------------------------------------------------\n\n$ERROR"
+  echo -e "\n\nPlease send an email with the problem you have to info@codium.team\n"
 fi
