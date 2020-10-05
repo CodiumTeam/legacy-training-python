@@ -16,6 +16,29 @@ function validateKata() {
     printStatus
 }
 
+function validateDocker() {
+    echo -n "Validating docker running..."
+    (docker ps) > /dev/null
+    if [ $? -ne 0 ]; then
+      echo "Error"
+      echo "Are you sure that you have docker running?"
+      exit -1
+    else
+      echo "Ok"
+    fi
+
+    echo -n "Validating docker mount permissions..."
+    (docker run --rm -v ${PWD}:/opt -w /opt python:3.8 ls) > /dev/null
+    if [ $? -ne 0 ]; then
+      echo "Error"
+      echo "Are you sure that you have permissions to mount your volumes?"
+      exit -1
+    else
+      echo "Ok"
+    fi
+}
+
+validateDocker
 validateKata web-page-generator-kata "cd web-page-generator-kata" "make docker-run"
 validateKata tennis-refactoring-kata "cd tennis-refactoring-kata" "make docker-tests"
 validateKata user-registration-refactoring-kata "cd user-registration-refactoring-kata" "make docker-build" "make docker-tests"
