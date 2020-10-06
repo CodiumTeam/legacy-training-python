@@ -9,10 +9,10 @@ golden-master:
 	python3 gilded_rose/main.py
 
 docker-run:
-	docker run -v ${PWD}:/opt/project -w /opt/project python:3.8 make run
+	docker run -v ${PWD}:/opt/project -w /opt/project python:3.8-alpine make run
 
 docker-golden-master:
-	docker run -v ${PWD}:/opt/project -w /opt/project python:3.8 make golden-master
+	docker run -v ${PWD}:/opt/project -w /opt/project python:3.8-alpine make golden-master
 
 define HELP
 # Local commands

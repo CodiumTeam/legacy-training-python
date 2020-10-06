@@ -1,8 +1,8 @@
 @echo off
 
 CALL :validateDocker
-CALL :validateKata web-page-generator-kata "docker run -v %CD%:/opt/project -w /opt/project python:3.8 make run"
-CALL :validateKata tennis-refactoring-kata "docker run -v %CD%:/opt/project -w /opt/project python:3.8 make tests"
+CALL :validateKata web-page-generator-kata "docker run -v %CD%:/opt/project -w /opt/project python:3.8-alpine make run"
+CALL :validateKata tennis-refactoring-kata "docker run -v %CD%:/opt/project -w /opt/project python:3.8-alpine make tests"
 REM CALL :validateKata user-registration-refactoring-kata "cd user-registration-refactoring-kata" "make docker-build" "make docker-tests"
 REM CALL :validateKata weather-kata "cd weather-kata" "make docker-build" "make docker-tests"
 REM CALL :validateKata trip-service-kata "cd trip-service-kata" "make docker-tests"

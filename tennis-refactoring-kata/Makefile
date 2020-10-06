@@ -6,7 +6,7 @@ tests:
 	python3 -m unittest tests/tennis_unittest.py
 
 docker-tests:
-	docker run -v ${PWD}:/opt/project -w /opt/project python:3.8 make tests
+	docker run -v ${PWD}:/opt/project -w /opt/project python:3.8-alpine make tests
 
 define HELP
 # Local commands
