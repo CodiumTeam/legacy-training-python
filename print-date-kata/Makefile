@@ -1,3 +1,5 @@
+.PHONY: tests
+
 default:
 	@printf "$$HELP"
 

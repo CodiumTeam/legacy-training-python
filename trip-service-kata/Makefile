@@ -1,3 +1,4 @@
+.PHONY: default tests docker-tests
 default:
 	@printf "$$HELP"
 
