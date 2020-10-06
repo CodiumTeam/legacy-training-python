@@ -9,7 +9,7 @@ tests-python2:
 	pytest
 
 docker-tests:
-	docker run -v ${PWD}:/opt/project -w /opt/project python:3.8-alpine make tests
+	docker run -v ${PWD}:/opt/project -w /opt/project python:3.8 make tests
 
 define HELP
 # Local commands
