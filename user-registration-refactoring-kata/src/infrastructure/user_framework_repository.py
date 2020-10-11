@@ -1,4 +1,4 @@
-from app.user import User
+from src.domain.user import User
 
 
 class UserFrameworkRepository:

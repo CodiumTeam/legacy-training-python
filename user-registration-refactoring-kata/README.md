@@ -4,6 +4,8 @@ Identify the different responsibilities and couplings.
 1. Identify the coupling with the Framework and decouple from it. 
 2. Identify the couplings with infrastructure and libraries and decouple from it.
 
+Start on the [views.py](src/framework/views.py)
+
 ## Install the dependencies
 
 within docker
@@ -16,7 +18,7 @@ within docker
 
     make docker-tests
 
-          
+         
 ## Authors
 Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
 

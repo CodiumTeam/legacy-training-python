@@ -1,8 +1,8 @@
 from django.test import RequestFactory, TestCase
 
-from app.user import User
-from app.user_framework_repository import UserFrameworkRepository
-from app.views import UserController
+from src.domain.user import User
+from src.infrastructure.user_framework_repository import UserFrameworkRepository
+from src.framework.views import UserController
 import json
 
 class UserRegistrationControllerTestCase(TestCase):

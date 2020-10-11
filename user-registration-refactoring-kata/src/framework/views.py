@@ -1,8 +1,8 @@
 import smtplib, ssl
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
-from app.user import User
-from app.user_framework_repository import UserFrameworkRepository
+from src.domain.user import User
+from src.infrastructure.user_framework_repository import UserFrameworkRepository
 from random import randint
 
 class UserController(View):
