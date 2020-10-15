@@ -9,9 +9,10 @@ tests-python2:
 	pytest
 
 coverage:
-	pytest tests --cov=weather
+	coverage run --source=weather -m unittest
+	coverage report
 	coverage html
-	@printf "Please open the report at htmlcov/index.html\n"
+	@printf "To visualize the lines open the report at htmlcov/index.html\n"
 
 docker-build:
 	@docker build . -t python-coverage
