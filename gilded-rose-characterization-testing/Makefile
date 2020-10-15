@@ -8,9 +8,9 @@ run-python2:
 tests:
 	python -m unittest
 coverage:
-	pytest tests --cov=gilded_rose
+	coverage run -m unittest
 	coverage html
-	@printf "Please open the report at htmlcov/index.html\n"
+	@printf "Please open the report at htmlcov/gilded_rose_gilded_rose_py.html\n"
 
 docker-build:
 	@docker build . -t python-coverage
