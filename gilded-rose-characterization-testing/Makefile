@@ -1,4 +1,4 @@
-.PHONY: default tests docker-tests
+.PHONY: default tests docker-tests mutation
 default:
 	@printf "$$HELP"
 
@@ -13,12 +13,17 @@ coverage:
 	coverage html
 	@printf "To visualize the lines open the report at htmlcov/index.html\n"
 
+mutation:
+	mutmut run --paths-to-mutate gilded_rose
+
 docker-build:
 	@docker build . -t python-coverage
 docker-tests:
 	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make tests
 docker-coverage:
 	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make coverage
+docker-mutation:
+	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make mutation
 
 
 define HELP
