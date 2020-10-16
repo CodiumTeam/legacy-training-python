@@ -36,6 +36,7 @@ class UsersStaticWebPageGenerator:
         file.write("<main role=\"main\" class=\"inner cover\">\n")
         for user in users:
             file.write("<h1 class=\"cover-heading\">" + user.name + "</h1>\n")
+            self.add_labels(file, user)
             file.write("<p class=\"lead\">" + user.biography + "</p>\n")
         file.write("</main>\n")
 
@@ -58,3 +59,31 @@ class UsersStaticWebPageGenerator:
             "<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js\" integrity=\"sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm\" crossorigin=\"anonymous\"></script>\n")
         file.write("</body>\n")
         file.write("</html>\n")
+
+    def add_labels(self, file, user):
+        self.add_score_label(file, user)
+        self.add_localization_label(file, user)
+        self.add_community_manager_label(file, user)
+
+    def add_score_label(self, file, user):
+        points = 0
+        for keywords in ['edición', 'sociedad', 'mundo', 'libro', 'texto', 'revista', 'valores', 'educación', 'teatro', 'social']:
+            if self.is_in_biography(user, keywords):
+                points += 1
+        file.write('<button type="button" class="btn btn-warning">Score <span class="badge badge-light">' + str(points) + '</span><span class="sr-only">keywords found</span></button>')
+
+
+    def add_localization_label(self, file, user):
+        for city in ['Barcelona', 'Madrid', 'Granada', 'Vigo', 'Palma de Mallorca']:
+            if (self.is_in_biography(user, city)):
+                file.write('<span class="badge badge-pill badge-info">' + city+'</span>')
+
+        pass
+
+    def add_community_manager_label(self, file, user):
+        if (self.is_in_biography(user, 'community manager')):
+            file.write('<span class="badge badge-pill badge-danger">Community manager</span>')
+
+    @staticmethod
+    def is_in_biography(user, word):
+        return word.lower() in user.biography.lower()
