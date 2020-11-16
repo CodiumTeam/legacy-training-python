@@ -11,7 +11,7 @@ run-python2:
 	@echo "Webpage generated at html/users.html"
 
 docker-run:
-	docker run -v ${PWD}:/opt/project -w /opt/project python:3.8 make run
+	docker run --rm -v ${PWD}:/opt/project -w /opt/project python:3.8 make run
 
 define HELP
 # Local commands

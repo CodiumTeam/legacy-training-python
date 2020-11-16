@@ -19,11 +19,11 @@ mutation:
 docker-build:
 	@docker build . -t python-coverage
 docker-tests:
-	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make tests
+	@docker run --rm -v ${PWD}:/opt/project -w /opt/project python-coverage make tests
 docker-coverage:
-	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make coverage
+	@docker run --rm -v ${PWD}:/opt/project -w /opt/project python-coverage make coverage
 docker-mutation:
-	@docker run -v ${PWD}:/opt/project -w /opt/project python-coverage make mutation
+	@docker run --rm -v ${PWD}:/opt/project -w /opt/project python-coverage make mutation
 
 
 define HELP
