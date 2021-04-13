@@ -17,9 +17,9 @@ coverage:
 docker-build:
 	@docker build . -t python-coverage
 docker-tests:
-	@docker run --rm -v ${PWD}:/opt/project -w /opt/project python-coverage make tests
+	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make tests
 docker-coverage:
-	@docker run --rm -v ${PWD}:/opt/project -w /opt/project python-coverage make coverage
+	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make coverage
 
 define HELP
 # Local commands
