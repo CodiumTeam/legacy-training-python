@@ -1,5 +1,5 @@
 import smtplib, ssl
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, HttpRequest, HttpResponse
 from django.views import View
 from src.domain.user import User
 from src.infrastructure.user_framework_repository import UserFrameworkRepository
@@ -7,10 +7,10 @@ from random import randint
 
 class UserController(View):
     # Create your views here.
-    def get(self, request):
+    def get(self, request: HttpRequest) -> HttpResponse:
         return JsonResponse("Hello, world. You're at the polls index.")
 
-    def post(self, request):
+    def post(self, request: HttpRequest) -> HttpResponse:
         if len(request.POST['password']) <= 8:
             return HttpResponseBadRequest('Password is not valid')
         if "_" not in request.POST['password']:
