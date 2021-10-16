@@ -14,7 +14,9 @@ coverage:
 	@printf "To visualize the lines open the report at htmlcov/index.html\n"
 
 mutation:
-	mutmut run --paths-to-mutate gilded_rose
+	mutmut run --paths-to-mutate gilded_rose || true
+	mutmut html
+	@echo "See the results in html/index.html"
 
 docker-build:
 	@docker build . -t python-coverage
