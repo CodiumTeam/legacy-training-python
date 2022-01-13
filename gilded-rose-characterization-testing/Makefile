@@ -2,9 +2,6 @@
 default:
 	@printf "$$HELP"
 
-run-python2:
-	pytest
-
 tests:
 	python -m unittest
 coverage:
@@ -14,9 +11,8 @@ coverage:
 	@printf "To visualize the lines open the report at htmlcov/index.html\n"
 
 mutation:
-	mutmut run --paths-to-mutate gilded_rose || true
-	mutmut html
-	@echo "See the results in html/index.html"
+	mutmut run --paths-to-mutate gilded_rose
+	mutmut results
 
 docker-build:
 	@docker build . -t python-coverage
@@ -25,18 +21,19 @@ docker-tests:
 docker-coverage:
 	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make coverage
 docker-mutation:
-	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make mutation
+	@docker run -v "${PWD}:/opt/project" -w /opt/project python-coverage make mutation
 
 
 define HELP
 # Local commands
 	- make run\tRun locally using Python3 and Unittest
 	- make coverage\tRun the code coverage locally using Python3 and Unittest
-	- make run-python2\t\tRun locally using Python2 and Pytest
+	- make mutation\tRun the mutations locally using Python3
 # Docker commands
 	- make docker-build\tBuild the image to run the tests
 	- make docker-run\tRun the tests inside docker
 	- make docker-coverage\tRun inside docker the code coverage
+	- make docker-mutation\tRun the mutations inside docker
  Please execute "make <command>". Example make help
 
 endef
