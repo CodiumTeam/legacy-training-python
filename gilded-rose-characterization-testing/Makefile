@@ -14,6 +14,9 @@ mutation:
 	mutmut run --paths-to-mutate gilded_rose || true
 	mutmut results
 
+mutate:
+	mutmut apply <write_the_id>
+
 docker-build:
 	@docker build . -t python-coverage
 docker-tests:
@@ -22,18 +25,21 @@ docker-coverage:
 	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make coverage
 docker-mutation:
 	@docker run -v "${PWD}:/opt/project" -w /opt/project python-coverage make mutation
-
+docker-mutate:
+	@docker run -v "${PWD}:/opt/project" -w /opt/project python-coverage make mutate
 
 define HELP
 # Local commands
 	- make run\tRun locally using Python3 and Unittest
 	- make coverage\tRun the code coverage locally using Python3 and Unittest
 	- make mutation\tRun the mutations locally using Python3
+	- make mutate\tApply a mutation, but you need to change the makefile
 # Docker commands
 	- make docker-build\tBuild the image to run the tests
 	- make docker-run\tRun the tests inside docker
 	- make docker-coverage\tRun inside docker the code coverage
 	- make docker-mutation\tRun the mutations inside docker
+	- make docker-mutate\tApply a mutation, but you need to change the makefile
  Please execute "make <command>". Example make help
 
 endef
