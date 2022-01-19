@@ -1,4 +1,4 @@
-.PHONY: default run docker-tests
+.PHONY: default run coverage golden-master docker-run docker-golden-master
 default:
 	@printf "$$HELP"
 
