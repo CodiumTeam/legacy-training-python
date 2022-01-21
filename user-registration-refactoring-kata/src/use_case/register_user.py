@@ -1,6 +1,6 @@
-import smtplib, ssl
-
+from src.domain.email import Email
 from src.domain.email_already_in_use_exception import EmailAlreadyInUseException
+from src.domain.email_sender import EmailSender
 from src.domain.invalid_password_exception import InvalidPasswordException
 from src.domain.user import User
 from src.infrastructure.user_framework_repository import UserFrameworkRepository
@@ -8,6 +8,11 @@ from random import randint
 
 
 class RegisterUser(object):
+
+    def __init__(self, emailSender: EmailSender):
+        super().__init__()
+        self.email_sender = emailSender
+
     def execute(self, password, email, name):
         if len(password) <= 8:
             raise InvalidPasswordException()
@@ -17,11 +22,10 @@ class RegisterUser(object):
             raise EmailAlreadyInUseException()
         user = User(randint(1, 999999), name, email)
         UserFrameworkRepository.get_instance().save(user)
-        # Send a confirmation email
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-            # Uncomment this lines with a valid username and password
-            # server.login("my@gmail.com", "myPassword")
-            # server.sendmail('info@codium.team', request.POST['email'], 'Confirmation link')
-            pass
+        email = Email('info@codium.team', email, 'Confirmation link', '')
+        self.send_email(email)
         return user
+
+    def send_email(self, email: Email):
+        self.email_sender.send(email)
+
