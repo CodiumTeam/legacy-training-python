@@ -3,6 +3,7 @@ from django.http import JsonResponse, HttpResponseBadRequest, HttpRequest, HttpR
 
 from src.domain.email_already_in_use_exception import EmailAlreadyInUseException
 from src.domain.invalid_password_exception import InvalidPasswordException
+from src.infrastructure.gmail_email_sender import GmailEmailSender
 from src.use_case.register_user import RegisterUser
 
 
@@ -12,7 +13,8 @@ class UserController(View):
         return JsonResponse("Hello, world. You're at the polls index.")
 
     def post(self, request: HttpRequest) -> HttpResponse:
-        register_user = RegisterUser()
+        email_sender = GmailEmailSender()
+        register_user = RegisterUser(email_sender)
         try:
             user = register_user.execute(
                 request.POST['password'],
