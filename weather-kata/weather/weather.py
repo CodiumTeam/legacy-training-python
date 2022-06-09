@@ -14,20 +14,54 @@ class Weather:
         # If there are predictions
         if (aDateTime < (datetime.datetime.now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
             # Find the id of the city on metawheather
-            woeid = json.loads(urlopen(
-                "https://www.metaweather.com/api/location/search/?query=" + city).read().decode("utf-8"))[0]['woeid']
+            response = json.loads(urlopen(
+                "https://positionstack.com/geo_api.php?query=" + city).read().decode("utf-8"))
+            latitude = response['data'][0]['latitude']
+            longitude = response['data'][0]['longitude']
 
-            # Find the predictions for the city
-            results = json.loads(urlopen(
-                "https://www.metaweather.com/api/location/" + str(woeid)).read().decode("utf-8"))['consolidated_weather']
+            # Find the predictions for the location
+            url = "https://api.open-meteo.com/v1/forecast?latitude="+ str(latitude) + "&longitude=" + str(longitude) + "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
+            response = json.loads(urlopen(url).read().decode("utf-8"))
 
-            for result in results:
-                # When the date is the expected
-                if result['applicable_date'] == aDateTime.strftime('%Y-%m-%d'):
-                    # If we have to return the wind information
-                    if wind:
-                        return result['wind_speed']
+            for i in range(7):
+                if response["daily"]['time'][i] == aDateTime.strftime('%Y-%m-%d'):
+                    if (wind):
+                        return response['daily']['windspeed_10m_max'][i]
                     else:
-                        return result['weather_state_name']
+                        weatherCode = response['daily']['weathercode'][i]
+                        return self.codeToText(weatherCode)
+
         else:
             return ""
+
+    def codeToText(self, weatherCode):
+        return {
+            0: 'Clear sky',
+            1: 'Mainly clear, partly cloudy, and overcast',
+            2: 'Mainly clear, partly cloudy, and overcast',
+            3: 'Mainly clear, partly cloudy, and overcast',
+            45: 'Fog and depositing rime fog',
+            48: 'Fog and depositing rime fog',
+            51: 'Drizzle: Light, moderate, and dense intensity',
+            53: 'Drizzle: Light, moderate, and dense intensity',
+            55: 'Drizzle: Light, moderate, and dense intensity',
+            56: 'Freezing Drizzle: Light and dense intensity',
+            57: 'Freezing Drizzle: Light and dense intensity',
+            61: 'Rain: Slight, moderate and heavy intensity',
+            63: 'Rain: Slight, moderate and heavy intensity',
+            65: 'Rain: Slight, moderate and heavy intensity',
+            66: 'Freezing Rain: Light and heavy intensity',
+            67: 'Freezing Rain: Light and heavy intensity',
+            71: 'Snow fall: Slight, moderate, and heavy intensity',
+            73: 'Snow fall: Slight, moderate, and heavy intensity',
+            75: 'Snow fall: Slight, moderate, and heavy intensity',
+            77: 'Snow grains',
+            80: 'Rain showers: Slight, moderate, and violent',
+            81: 'Rain showers: Slight, moderate, and violent',
+            82: 'Rain showers: Slight, moderate, and violent',
+            85: 'Snow showers slight and heavy',
+            86: 'Snow showers slight and heavy',
+            95: 'Thunderstorm: Slight or moderate',
+            96: 'Thunderstorm with slight and heavy hail',
+            99: 'Thunderstorm with slight and heavy hail',
+        }[weatherCode]
