@@ -18,7 +18,7 @@ How to build a Mock and Stub manually.
 How to use Unittest Mock to generate the doubles.
 
 ## Tools
-[Unittest Mockito](https://cpython-test-docs.readthedocs.io/en/latest/library/unittest.mock.html)
+[Unittest documentation](https://cpython-test-docs.readthedocs.io/en/latest/library/unittest.mock.html)
 ### Example of spy
 
     def test_should_send_an_email(self):
