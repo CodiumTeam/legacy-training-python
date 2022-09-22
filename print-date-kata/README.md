@@ -22,7 +22,7 @@ How to use Unittest Mock to generate the doubles.
 ### Example of spy
 
     def test_should_send_an_email(self):
-        emailSender = Mock()
+        emailSender = Mock(EmailSender)
         user_registration = UserRegistration(email_sender)
     
         user_registration.register()
@@ -33,7 +33,7 @@ How to use Unittest Mock to generate the doubles.
 ### Example of stub
 
     def test_should_success_when_password_is_valid(self):
-        password_validator = Mock()
+        password_validator = Mock(PasswordValidator)
         password_validator.is_valid = Mock(return_value=true)
         user_registration = UserRegistration(password_validator)
 
