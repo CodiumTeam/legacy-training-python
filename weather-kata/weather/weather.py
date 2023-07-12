@@ -29,6 +29,9 @@ class Weather:
         else:
             return ""
 
+    def _now(self):
+        return datetime.datetime.now()
+
     def _find_prediction(self, latitude, longitude):
         url = "https://api.open-meteo.com/v1/forecast?latitude=" + str(latitude) + "&longitude=" + str(
             longitude
