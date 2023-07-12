@@ -1,12 +1,12 @@
 import unittest
 
-from weather import Weather
+from tests.testable_weather import TestableWeather
 
 
 class TestWeather(unittest.TestCase):
 
     def test_weather_prediction_for_madrid(self):
-        weather = Weather()
+        weather = TestableWeather()
 
         prediction = weather.predict("Madrid")
 
