@@ -1,20 +1,10 @@
-.PHONY: default docker-tests
+.PHONY: default
+default: docker-tests
 
-default:
-	@printf "$$HELP"
-
+.PHONY: docker-build
 docker-build:
-	docker build -t django-docker-bootstrap .
+	docker build -t codiumteam/legacy-training-python:user-registration .
 
+.PHONY: docker-tests
 docker-tests:
-	docker run --rm -v "${PWD}:/opt/project" django-docker-bootstrap python manage.py test test
-
-define HELP
-# Docker commands
-        - make docker-build\tGenerate the docker image with Django installed
-        - make docker-tests\t\tRun the tests
- Please execute "make <command>". Example make help
-
-endef
-
-export HELP
+	docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python:user-registration python manage.py test test
