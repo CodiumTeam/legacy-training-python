@@ -2,6 +2,7 @@ import datetime
 import unittest
 
 from tests.testable_weather import TestableWeather
+from weather import Weather
 
 
 class TestWeather(unittest.TestCase):
@@ -33,3 +34,12 @@ class TestWeather(unittest.TestCase):
         prediction = weather.predict("Madrid", datetime.datetime(2023, 7, 19))
 
         self.assertEqual("", prediction)
+
+    def test_using_the_real_api_returns_a_response(self):
+        weather = Weather()
+
+        prediction = weather.predict("Madrid")
+
+        self.assertIsInstance(prediction, str)
+        self.assertNotEquals("", prediction)
+
