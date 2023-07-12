@@ -1,4 +1,4 @@
-from urllib.request import urlopen, Request
+from urllib.request import urlopen
 import json
 import datetime
 
@@ -11,11 +11,9 @@ class Weather:
         # If there are predictions
         if (aDateTime < (datetime.datetime.now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
             # Find the id of the city on metawheather
-            request = Request("https://api.api-ninjas.com/v1/geocoding?city=" + city)
-            request.add_header("X-Api-Key", "GZmFvwGzDO1X365MONdH4A==ZCVTopwueIVfYrKN")
-            response = json.loads(urlopen(request).read().decode("utf-8"))
-            latitude = response[0]['latitude']
-            longitude = response[0]['longitude']
+            response = json.loads(self._find_latitude_and_longitude(city))
+            latitude = response['data'][0]['latitude']
+            longitude = response['data'][0]['longitude']
 
             # Find the predictions for the location
             url = "https://api.open-meteo.com/v1/forecast?latitude="+ str(latitude) + "&longitude=" + str(longitude) + "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
@@ -31,6 +29,11 @@ class Weather:
 
         else:
             return ""
+
+    def _find_latitude_and_longitude(self, city):
+        Request("https://api.api-ninjas.com/v1/geocoding?city=" + city)
+        request.add_header("X-Api-Key", "GZmFvwGzDO1X365MONdH4A==ZCVTopwueIVfYrKN")
+        return urlopen(request).read().decode("utf-8")
 
     def codeToText(self, weatherCode):
         return {
