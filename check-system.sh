@@ -39,14 +39,14 @@ function validateDocker() {
 }
 
 validateDocker
-validateKata web-page-generator-kata "cd web-page-generator-kata" "make docker-run"
-validateKata tennis-refactoring-kata "cd tennis-refactoring-kata" "make docker-tests"
-validateKata user-registration-refactoring-kata "cd user-registration-refactoring-kata" "make docker-build" "make docker-tests"
-validateKata weather-kata "cd weather-kata" "make docker-build" "make docker-tests"
-validateKata trip-service-kata "cd trip-service-kata" "make docker-tests"
-validateKata gilded-rose-golden-master "cd gilded-rose-golden-master" "make docker-run"
-validateKata trivia-golden-master "cd trivia-golden-master" "make docker-run"
-validateKata print-date-kata "cd print-date-kata" "make docker-build" "make docker-tests"
+validateKata web-page-generator-kata "cd web-page-generator-kata" "make"
+validateKata tennis-refactoring-kata "cd tennis-refactoring-kata" "make"
+validateKata user-registration-refactoring-kata "cd user-registration-refactoring-kata" "make"
+validateKata weather-kata "cd weather-kata" "make"
+validateKata trip-service-kata "cd trip-service-kata" "make"
+validateKata gilded-rose-golden-master "cd gilded-rose-golden-master" "make"
+validateKata trivia-golden-master "cd trivia-golden-master" "make"
+validateKata print-date-kata "cd print-date-kata" "make"
 
 if [ -z "$ERROR" ]; then
   echo "Congratulations! You are ready for the training!"
