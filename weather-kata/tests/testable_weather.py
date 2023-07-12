@@ -2,4 +2,6 @@ from weather import Weather
 
 
 class TestableWeather(Weather):
-    pass
+
+    def _find_latitude_and_longitude(self, city):
+        return '{"data":[{"latitude":40.429913,"longitude":-3.669245,"type":"locality","name":"Madrid","number":null,"postal_code":null,"street":null,"confidence":1,"region":"Madrid","region_code":"MD","county":null,"locality":"Madrid","administrative_area":null,"neighbourhood":null,"country":"Spain","country_code":"ESP","continent":"Europe","label":"Madrid, Spain","bbox_module":[-3.888962,40.312064,-3.518051,40.643271],"country_module":{"latitude":40.396026611328125,"longitude":-3.550692558288574,"common_name":"Spain","official_name":"Kingdom of Spain","capital":"Madrid","flag":"\ud83c\uddea\ud83c\uddf8","area":505992,"landlocked":false,"independent":true,"global":{"alpha2":"ES","alpha3":"ESP","numeric_code":"724","region":"Europe","subregion":"Southern Europe","region_code":"150","subregion_code":"039","world_region":"EMEA","continent_name":"Europe","continent_code":"EU"},"dial":{"calling_code":"34","national_prefix":null,"international_prefix":"00"},"currencies":[{"symbol":"\u20ac","code":"EUR","name":"Euro","numeric":978,"minor_unit":2}],"languages":{"spa":"Spanish"}},"sun_module":{"rise":{"time":1689137690,"astronomical":1689130490,"civil":1689135752,"nautical":1689133305},"set":{"time":1689191148,"astronomical":1689198348,"civil":1689193085,"nautical":1689195533},"transit":1689164419},"timezone_module":{"name":"Europe\/Madrid","offset_sec":7200,"offset_string":"+02:00"}}]}'
