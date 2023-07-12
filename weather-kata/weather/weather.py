@@ -11,8 +11,7 @@ class Weather:
         # If there are predictions
         if (aDateTime < (datetime.datetime.now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
             # Find the id of the city on metawheather
-            response = json.loads(urlopen(
-                "https://positionstack.com/geo_api.php?query=" + city).read().decode("utf-8"))
+            response = json.loads(self._find_latitude_and_longitude(city))
             latitude = response['data'][0]['latitude']
             longitude = response['data'][0]['longitude']
 
@@ -30,6 +29,11 @@ class Weather:
 
         else:
             return ""
+
+    def _find_latitude_and_longitude(self, city):
+        return urlopen(
+            "https://positionstack.com/geo_api.php?query=" + city
+        ).read().decode("utf-8")
 
     def codeToText(self, weatherCode):
         return {
