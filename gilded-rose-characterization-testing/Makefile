@@ -1,47 +1,43 @@
-.PHONY: default tests docker-tests mutation
-default:
-	@printf "$$HELP"
+.PHONY: default
+default: docker-tests
 
+.PHONY: tests
 tests:
 	python -m unittest
+
+.PHONY: coverage
 coverage:
 	coverage run --source=gilded_rose -m unittest
 	coverage report
 	coverage html
 	@printf "To visualize the lines open the report at htmlcov/index.html\n"
 
+.PHONY: mutation
 mutation:
 	mutmut run --paths-to-mutate gilded_rose || true
 	mutmut results
 
+.PHONY: mutate
 mutate:
 	mutmut apply <write_the_id>
 
+
+.PHONY: docker-build
 docker-build:
-	@docker build . -t python-coverage
+	@docker build . -t codiumteam/legacy-training-python:gilded-rose-characterization
+
+.PHONY: docker-tests
 docker-tests:
-	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make tests
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python:gilded-rose-characterization make tests
+
+.PHONY: docker-coverage
 docker-coverage:
-	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make coverage
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python:gilded-rose-characterization make coverage
+
+.PHONY: docker-mutation
 docker-mutation:
-	@docker run -v "${PWD}:/opt/project" -w /opt/project python-coverage make mutation
+	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python:gilded-rose-characterization make mutation
+
+.PHONY: docker-mutate
 docker-mutate:
-	@docker run -v "${PWD}:/opt/project" -w /opt/project python-coverage make mutate
-
-define HELP
-# Local commands
-	- make run\tRun locally using Python3 and Unittest
-	- make coverage\tRun the code coverage locally using Python3 and Unittest
-	- make mutation\tRun the mutations locally using Python3
-	- make mutate\tApply a mutation, but you need to change the makefile
-# Docker commands
-	- make docker-build\tBuild the image to run the tests
-	- make docker-run\tRun the tests inside docker
-	- make docker-coverage\tRun inside docker the code coverage
-	- make docker-mutation\tRun the mutations inside docker
-	- make docker-mutate\tApply a mutation, but you need to change the makefile
- Please execute "make <command>". Example make help
-
-endef
-
-export HELP
+	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python:gilded-rose-characterization make mutate
