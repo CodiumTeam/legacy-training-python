@@ -1,3 +1,4 @@
+import datetime
 import unittest
 
 from tests.testable_weather import TestableWeather
@@ -11,3 +12,10 @@ class TestWeather(unittest.TestCase):
         prediction = weather.predict("Madrid")
 
         self.assertEqual("Mainly clear, partly cloudy, and overcast", prediction)
+
+    def test_weather_prediction_with_date(self):
+        weather = TestableWeather()
+
+        prediction = weather.predict("Madrid", datetime.datetime(2023, 7, 14))
+
+        self.assertEqual("Clear sky", prediction)
