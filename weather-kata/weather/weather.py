@@ -30,11 +30,10 @@ class Weather:
             return ""
 
     def _find_prediction(self, latitude, longitude):
-        return urlopen(
-            "https://api.open-meteo.com/v1/forecast?latitude=" + str(latitude) + "&longitude=" + str(
-                longitude
-            ) + "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
-        ).read().decode("utf-8")
+        url = "https://api.open-meteo.com/v1/forecast?latitude=" + str(latitude) + "&longitude=" + str(
+            longitude
+        ) + "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
+        return urlopen(url).read().decode("utf-8")
 
     def _find_latitude_and_longitude(self, city):
         Request("https://api.api-ninjas.com/v1/geocoding?city=" + city)
