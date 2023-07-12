@@ -26,3 +26,10 @@ class TestWeather(unittest.TestCase):
         prediction = weather.predict("Madrid", None, True)
 
         self.assertEqual(20.0, prediction)
+
+    def test_does_not_return_any_prediction_for_a_date_too_far(self):
+        weather = TestableWeather()
+
+        prediction = weather.predict("Madrid", datetime.datetime(2023, 7, 19))
+
+        self.assertEqual("", prediction)
