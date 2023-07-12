@@ -7,9 +7,9 @@ class Weather:
     def predict(self, city, aDateTime = None, wind = False):
         # When date is not provided we look for the current prediction
         if aDateTime is None:
-            aDateTime = datetime.datetime.now()
+            aDateTime = self._now()
         # If there are predictions
-        if (aDateTime < (datetime.datetime.now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
+        if (aDateTime < (self._now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
             # Find the id of the city on metawheather
             response = json.loads(self._find_latitude_and_longitude(city))
             latitude = response['data'][0]['latitude']
@@ -28,6 +28,9 @@ class Weather:
 
         else:
             return ""
+
+    def _now(self):
+        return datetime.datetime.now()
 
     def _find_latitude_and_longitude(self, city):
         url = "https://positionstack.com/geo_api.php?query=" + city
