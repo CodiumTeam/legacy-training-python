@@ -1,4 +1,4 @@
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 import json
 import datetime
 
@@ -11,10 +11,11 @@ class Weather:
         # If there are predictions
         if (aDateTime < (datetime.datetime.now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
             # Find the id of the city on metawheather
-            response = json.loads(urlopen(
-                "https://positionstack.com/geo_api.php?query=" + city).read().decode("utf-8"))
-            latitude = response['data'][0]['latitude']
-            longitude = response['data'][0]['longitude']
+            request = Request("https://api.api-ninjas.com/v1/geocoding?city=" + city)
+            request.add_header("X-Api-Key", "GZmFvwGzDO1X365MONdH4A==ZCVTopwueIVfYrKN")
+            response = json.loads(urlopen(request).read().decode("utf-8"))
+            latitude = response[0]['latitude']
+            longitude = response[0]['longitude']
 
             # Find the predictions for the location
             url = "https://api.open-meteo.com/v1/forecast?latitude="+ str(latitude) + "&longitude=" + str(longitude) + "&daily=weathercode,windspeed_10m_max&current_weather=true&timezone=Europe%2FBerlin"
