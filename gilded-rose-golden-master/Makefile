@@ -11,8 +11,8 @@ golden-master:
 
 .PHONY: docker-run
 docker-run:
-	docker run --rm -v "${PWD}:/code" -w /code python:3.8 make run
+	docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make run
 
 .PHONY: docker-golden-master
 docker-golden-master:
-	docker run --rm -v "${PWD}:/code" -w /code python:3.8 make golden-master
+	docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make golden-master

@@ -22,22 +22,18 @@ mutate:
 	mutmut apply <write_the_id>
 
 
-.PHONY: docker-build
-docker-build:
-	@docker build . -t codiumteam/legacy-training-python:gilded-rose-characterization
-
 .PHONY: docker-tests
 docker-tests:
-	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python:gilded-rose-characterization make tests
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make tests
 
 .PHONY: docker-coverage
 docker-coverage:
-	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python:gilded-rose-characterization make coverage
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make coverage
 
 .PHONY: docker-mutation
 docker-mutation:
-	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python:gilded-rose-characterization make mutation
+	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python make mutation
 
 .PHONY: docker-mutate
 docker-mutate:
-	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python:gilded-rose-characterization make mutate
+	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python make mutate

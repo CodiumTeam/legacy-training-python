@@ -6,4 +6,4 @@ tests:
 	python3 -m unittest tests/trip_service_test.py
 
 docker-tests:
-	docker run --rm -v "${PWD}:/code" -w /code python:3.8 make tests
+	docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make tests
