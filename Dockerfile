@@ -1,4 +1,4 @@
-FROM python:3.12
+FROM python:3.11
 
 RUN pip3 install coverage
 RUN pip3 install pytest-cov
