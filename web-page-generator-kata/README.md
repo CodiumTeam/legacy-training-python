@@ -44,7 +44,7 @@ The list of keywords that we are interested in is:
 The html code that we could use could be:
 
 ```html
-  <button type="button" class="btn btn-warning">Score <span class="badge badge-light">N</span><span class="sr-only">keywords found</span></button>";
+  <button type="button" class="btn btn-warning">Score <span class="badge badge-light">N</span><span class="sr-only">keywords found</span></button>"
 ```
 
 #### 2) Localization label
