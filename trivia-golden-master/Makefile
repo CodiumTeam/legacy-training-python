@@ -5,6 +5,10 @@ default: docker-run
 run:
 	@python trivia/main.py
 
+.PHONY: tests
+tests:
+	pytest
+
 .PHONY: coverage
 coverage:
 	pytest --cov=trivia tests
@@ -18,6 +22,10 @@ golden-master:
 .PHONY: docker-run
 docker-run:
 	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make run
+
+.PHONY: docker-tests
+docker-tests:
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make tests
 
 .PHONY: docker-golden-master
 docker-golden-master:
