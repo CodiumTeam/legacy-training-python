@@ -27,6 +27,10 @@ docker-run:
 docker-tests:
 	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make tests
 
+.PHONY: docker-coverage
+docker-coverage:
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make coverage
+
 .PHONY: docker-golden-master
 docker-golden-master:
 	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make golden-master
