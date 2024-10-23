@@ -18,19 +18,10 @@ We only can change TripService class.
   - Introduce static setter 
 
 ## How to run and see the result
-## Run the tests
 
-**Locally** with Python3 on Linux and Mac
-
-    make tests
-
-or inside **docker** on **Linux and Mac**
-
-    make docker-tests
-
-or on **Windows**
-
-Open the Makefile and copy and paste the lines below each command.
+    make 
+    
+or open [Makefile](./Makefile) and execute the one you want.
 
 ## Original source code from:
 https://github.com/sandromancuso/trip-service-kata

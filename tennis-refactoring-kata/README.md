@@ -28,12 +28,11 @@ You can read more about Tennis scores [here](http://en.wikipedia.org/wiki/Tennis
 
 You need only report the score for the current game. Sets and Matches are out of scope.
 
-## How to execute the tests with python 3
-    make tests 
+## How to execute the tests
 
-## How to execute the tests using docker
-
-    make docker-tests    
+    make 
+    
+or open [Makefile](./Makefile) and execute the one you want.
 
 # Credits
 Thanks to [Emily Bache](https://github.com/emilybache) for crafting this kata.

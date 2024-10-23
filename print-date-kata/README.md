@@ -42,18 +42,10 @@ How to use Unittest Mock to generate the doubles.
         assertTrue(success)
 
 ## How to run and see the result
-## Locally
-### on Linux and Mac
-Run the tests
 
-    make tests
-
-Run the code coverage
-
-    make coverage
+    make 
     
-### on Windows
-Open the Makefile and copy and paste the lines below each command.
+or open [Makefile](./Makefile) and execute the one you want.
 	
 ## Docker
 

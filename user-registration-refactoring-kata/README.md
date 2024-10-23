@@ -26,17 +26,11 @@ For the second part of the exercise you need to repeat this 4 steps for each cou
 4. Remove the coupling with the infrastructure (Database and Libraries) injecting the collaborator.
 
 
-## Install the dependencies
+## How to run the tests
 
-within docker
-
-    make docker-build
-
-## Run the tests
-
-within docker
-
-    make docker-tests
+    make 
+    
+or open [Makefile](./Makefile) and execute the one you want.
 
          
 ## Authors

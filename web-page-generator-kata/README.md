@@ -5,13 +5,10 @@
 - **Practice the wrap method/class technique** in the bonus task to encapsulate the current logic and add a the new feature
 
 ## How to run and see the result
-On Linux and Mac
 
     make 
     
-in Windows using docker
-
-    docker run -v %cd%:/opt/project -w /opt/project python make
+or open [Makefile](./Makefile) and execute the one you want.
 
 Open in a browser [html/users.html](html/users.html)
 

@@ -11,24 +11,10 @@ The code is small but it has a lot of code smells and sometimes it's difficult t
 
 
 ## How to run and see the result
-## Run the tests
 
-**Locally** with Python3 on Linux and Mac
-
-    make run
-
-or inside **docker** on **Linux and Mac**
-
-    make docker-run
-
-or inside docker on **Windows**
-
-Open the Makefile and copy and paste the lines below each command.
+    make 
     
-
-## Run the tests with
-
-    make tests
+or open [Makefile](./Makefile) and execute the one you want.
 
 ## Original source code from:
 https://github.com/jbrains/trivia

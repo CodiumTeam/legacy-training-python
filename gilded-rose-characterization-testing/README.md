@@ -22,7 +22,10 @@ You can to run the test with coverage in order to know if all the paths have bee
 
 
 ## How to run and see the result
-Open the [Makefile](./Makefile) and see the options.
+
+    make 
+    
+or open [Makefile](./Makefile) and execute the one you want.
     
 ## Inspired by:
 https://github.com/emilybache/GildedRose-Refactoring-Kata/

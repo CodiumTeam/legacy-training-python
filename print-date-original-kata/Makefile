@@ -1,6 +1,14 @@
 .PHONY: default
 default: docker-tests
 
+.PHONY: docker-tests
+docker-tests:
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make tests
+
+.PHONY: docker-coverage
+docker-coverage:
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make coverage
+
 .PHONY: tests
 tests:
 	python -m unittest tests/print_date_test.py
@@ -10,11 +18,3 @@ coverage:
 	pytest --cov=print_date tests
 	coverage html
 	@printf "Please open the report at htmlcov/index.html\n"
-
-.PHONY: docker-tests
-docker-tests:
-	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make tests
-
-.PHONY: docker-coverage
-docker-coverage:
-	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make coverage
