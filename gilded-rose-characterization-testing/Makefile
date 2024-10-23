@@ -1,6 +1,22 @@
 .PHONY: default
 default: docker-tests
 
+.PHONY: docker-tests
+docker-tests:
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make tests
+
+.PHONY: docker-coverage
+docker-coverage:
+	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make coverage
+
+.PHONY: docker-mutation
+docker-mutation:
+	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python make mutation
+
+.PHONY: docker-mutate
+docker-mutate:
+	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python make mutate
+
 .PHONY: tests
 tests:
 	python -m unittest
@@ -20,20 +36,3 @@ mutation:
 .PHONY: mutate
 mutate:
 	mutmut apply <write_the_id>
-
-
-.PHONY: docker-tests
-docker-tests:
-	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make tests
-
-.PHONY: docker-coverage
-docker-coverage:
-	@docker run --rm -v "${PWD}:/code" codiumteam/legacy-training-python make coverage
-
-.PHONY: docker-mutation
-docker-mutation:
-	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python make mutation
-
-.PHONY: docker-mutate
-docker-mutate:
-	@docker run -v "${PWD}:/code" codiumteam/legacy-training-python make mutate

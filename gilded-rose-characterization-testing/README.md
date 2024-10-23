@@ -22,36 +22,7 @@ You can to run the test with coverage in order to know if all the paths have bee
 
 
 ## How to run and see the result
-## Locally
-### on Linux and Mac
-Run the tests
-
-    make tests
-
-Run the code coverage
-
-    make coverage
-    
-### on Windows
-Open the Makefile and copy and paste the lines below each command.
-	
-## Docker
-
-### on Linux and Mac
-Generate the image
-
-    make docker-build
-
-Run the tests
-    
-    make docker-tests
-
-Run the code coverage
-    
-    make docker-coverage
-
-### on Windows
-Open the Makefile and copy and paste the lines below each command.
+Open the [Makefile](./Makefile) and see the options.
     
 ## Inspired by:
 https://github.com/emilybache/GildedRose-Refactoring-Kata/
