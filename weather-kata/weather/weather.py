@@ -1,4 +1,4 @@
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 import json
 import datetime
 
@@ -7,13 +7,13 @@ class Weather:
     def predict(self, city, aDateTime = None, wind = False):
         # When date is not provided we look for the current prediction
         if aDateTime is None:
-            aDateTime = datetime.datetime.now()
+            aDateTime = self._now()
         # If there are predictions
-        if (aDateTime < (datetime.datetime.now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
+        if (aDateTime < (self._now() + datetime.timedelta(days=6)).replace(hour=0, minute=0, second=0)):
             # Find the id of the city on metawheather
             response = json.loads(self._find_latitude_and_longitude(city))
-            latitude = response['data'][0]['latitude']
-            longitude = response['data'][0]['longitude']
+            latitude = response[0]['latitude']
+            longitude = response[0]['longitude']
 
             # Find the predictions for the location
             response = json.loads(self._find_prediction(latitude, longitude))
@@ -39,7 +39,7 @@ class Weather:
         return urlopen(url).read().decode("utf-8")
 
     def _find_latitude_and_longitude(self, city):
-        Request("https://api.api-ninjas.com/v1/geocoding?city=" + city)
+        request = Request("https://api.api-ninjas.com/v1/geocoding?city=" + city)
         request.add_header("X-Api-Key", "GZmFvwGzDO1X365MONdH4A==ZCVTopwueIVfYrKN")
         return urlopen(request).read().decode("utf-8")
 
@@ -73,4 +73,4 @@ class Weather:
             95: 'Thunderstorm: Slight or moderate',
             96: 'Thunderstorm with slight and heavy hail',
             99: 'Thunderstorm with slight and heavy hail',
-        }[weatherCode]
+        }[weatherCode] or 'Código: ' + weatherCode

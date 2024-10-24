@@ -41,5 +41,5 @@ class TestWeather(unittest.TestCase):
         prediction = weather.predict("Madrid")
 
         self.assertIsInstance(prediction, str)
-        self.assertNotEquals("", prediction)
+        self.assertNotEqual("", prediction)
 
