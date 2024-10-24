@@ -19,7 +19,7 @@ docker-golden-master:
 
 .PHONY: run
 run:
-	@python trivia/main.py
+	@python -m trivia
 
 .PHONY: tests
 tests:
@@ -33,4 +33,4 @@ coverage:
 
 .PHONY: golden-master
 golden-master:
-	@python trivia/main.py
+	@python -m trivia
