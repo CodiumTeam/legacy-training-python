@@ -46,24 +46,6 @@ How to use Unittest Mock to generate the doubles.
     make 
     
 or open [Makefile](./Makefile) and execute the one you want.
-	
-## Docker
-
-### on Linux and Mac
-Generate the image
-
-    make docker-build
-
-Run the tests
-    
-    make docker-tests
-
-Run the code coverage
-    
-    make docker-coverage
-
-### on Windows
-Open the Makefile and copy and paste the lines below each command.
 
 ## Authors
 Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
