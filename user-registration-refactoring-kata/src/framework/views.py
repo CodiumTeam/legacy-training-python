@@ -17,7 +17,7 @@ class UserController(View):
             return HttpResponseBadRequest('Password is not valid')
         if UserFrameworkRepository.get_instance().find_by_email(request.POST['email']) is not None:
             return HttpResponseBadRequest('The email is already in use')
-        user = User(randint(1, 999999), request.POST['name'], request.POST['email'])
+        user = User(randint(1, 999999), request.POST['name'], request.POST['email'], request.POST['password'])
         UserFrameworkRepository.get_instance().save(user)
 
         # Send a confirmation email

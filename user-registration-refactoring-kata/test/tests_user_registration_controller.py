@@ -66,7 +66,7 @@ class UserRegistrationControllerTestCase(TestCase):
         self.assertIsNotNone(user)
 
     def test_should_fail_when_email_is_used(self):
-        UserFrameworkRepository.get_instance().save(User(1, 'Codium', 'info@codium.team'))
+        UserFrameworkRepository.get_instance().save(User(1, 'Codium', 'info@codium.team', 'any_Password'))
 
         request = self.factory.post('/users', {'name': 'Codium', 'email': 'info@codium.team', 'password': 'myPass_123123' })
         response = self.view(request)
