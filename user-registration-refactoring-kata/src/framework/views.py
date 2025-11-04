@@ -6,10 +6,6 @@ from src.infrastructure.user_framework_repository import UserFrameworkRepository
 from random import randint
 
 class UserController(View):
-    # Create your views here.
-    def get(self, request: HttpRequest) -> HttpResponse:
-        return JsonResponse("Hello, world. You're at the polls index.")
-
     def post(self, request: HttpRequest) -> HttpResponse:
         if len(request.POST['password']) <= 8:
             return HttpResponseBadRequest('Password is not valid')
